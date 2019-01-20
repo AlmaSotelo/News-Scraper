@@ -18,8 +18,11 @@ module.exports = function(router) {
       res.render("saved");
    });
 
-   router.get(".api/fetch", function(req, res) {
+   router.get("/api/fetch", function(req, res) {
+      console.log("In scrape")
       headlinesController.fetch(function(err, docs) {
+         console.log(err, "this is the error");
+         console.log(docs, " This is the docs");
          if (!docs || docs.insertedCount === 0) {
             res.json({
                message: "No new articles today. Check back tomorrow!"
@@ -37,10 +40,11 @@ module.exports = function(router) {
       if (req.query.saved) {
          query = req.query;
       }
-
-      headlinesController.get(query, function(data) {
-         res.json(data);
+      
+      return headlinesController.get(query, function(data) {
+         return res.json(data);
       });
+      
    });
 
    router.delete("/api/headlines/:id", function(req, res) {

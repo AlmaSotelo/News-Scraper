@@ -6,30 +6,35 @@ var request = require("request");
 var cheerio = require("cheerio");
 
 var scrape = function (cb) {
+   console.log("in Scrape function")
+   
    request("http://www.nytimes.com", function(err, res, body) {
-
+      
       var $ = cheerio.load(body);
-
+      
       var articles = [];
 
-      $(".theme-summary").each(function(i, element) {
-
-         var  head = $(this).children(".story-heading").text().trim();
-         var sum = $(this).children(".summary").text().trim();
-
-         if(head && sum) {
-            var headNeat = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
-            var sumNeat = sum.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
+      $("article h2").each(function(i, element) {
+         console.log('In ')
+         console.log(element, " this is the element")
+         var head = $(this).text().trim();
+         var sum = $(this).siblings("p").text();
+         console.log(head, "This is the head");
+         console.log(sum, "This is the sum");
+            /// WE need to get the summary. 
 
             var dataToAdd = {
-               headline: jeadNeat,
-               summary: sumNeat
+               headline: head,
+               summary: sum
             };
             articles.push(dataToAdd);
-         }
+        
       });
-      cb(articles);
+
+      console.log(articles, "scraped articles")
+      
    });
+   cb(articles);
 };
 
 module.exports = scrape;

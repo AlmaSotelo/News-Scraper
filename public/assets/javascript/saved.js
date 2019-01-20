@@ -15,7 +15,7 @@ $(document).ready(function() {
    function initPage () {
       //Empty the article clontainer, run an AJAX request for any saved headlines
       articleContainer.empty();
-      $.get("/api/headlines?saved=true").then(function(data) {
+      $.get("/?saved=true").then(function(data) {
          //if we have headlines, render them to the page
          if (data && data.length) {
             renderArticles(data);
@@ -128,7 +128,7 @@ $(document).ready(function() {
       //Using a dlete method here just to be semantic since we are deleting an article/headline
       $.ajax({
          method:"DELETE",
-         url: "/api/headlines/" + articleToDelete._id
+         url: "//" + articleToDelete._id
       }).then(function(data) {
          //if this works out, run iniPage again which will render our list of saved articles
          if (data.ok) {

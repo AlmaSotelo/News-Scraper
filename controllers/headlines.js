@@ -9,12 +9,14 @@ module.exports = {
    fetch: function(cb) {
       scrape(function(data) {
          var articles = data;
+         console.log(data, "these are articles in call back *************")
          for (var i=0; i < articles.length; i++) {
             articles[i].date = makeDate();
             article[i].saved = false;
          }
          //mongo function
-         Headline.collection.insertMany(articles, {ordered:false}, function(err, docs){
+         //Ponere los articles en el database []
+         Headline.insertMany(articles, {ordered:false}, function(err, docs){
             cb(err, docs);
          });
       });

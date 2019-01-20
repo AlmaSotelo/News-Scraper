@@ -116,7 +116,7 @@ $(document).ready(function() {
             //if we are able to succesfully scrape the NYTIMES and compare the articles to those
             //already in our collectiom re render the article on the page
             //and let the user know how many unique articles we were able to save
-            initPage();
+           // initPage();
             bootbox.alert("<h3 class='text-center m-top-80'>" + data.message + "</h3>");
         });
    }
