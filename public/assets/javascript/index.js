@@ -33,7 +33,7 @@ $(document).ready(function() {
       //We pass each article JSON object to the createPanel function which returns a bootstrap
       //panel with our article data inside
       for (var i=0; i< articles.length; i++ ) {
-         afticlePanels.push(createPanel(articles[i]));
+         articlePanels.push(createPanel(articles[i]));
       }
       //Once we have all of the HTML for the articles stored in our articlePanel array,
       //append them to the articlePanels container
@@ -118,6 +118,8 @@ $(document).ready(function() {
             //and let the user know how many unique articles we were able to save
            // initPage();
             bootbox.alert("<h3 class='text-center m-top-80'>" + data.message + "</h3>");
+            
         });
+        
    }
 });

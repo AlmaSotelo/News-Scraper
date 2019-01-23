@@ -9,16 +9,19 @@ module.exports = {
    fetch: function(cb) {
       scrape(function(data) {
          var articles = data;
-         console.log(data, "these are articles in call back *************")
+         //console.log(data, "these are articles in call back *************")
          for (var i=0; i < articles.length; i++) {
             articles[i].date = makeDate();
-            article[i].saved = false;
+            articles[i].saved = false;
          }
+         console.log(articles.length)
          //mongo function
          //Ponere los articles en el database []
-         Headline.insertMany(articles, {ordered:false}, function(err, docs){
-            cb(err, docs);
-         });
+          Headline.insertMany(articles, {ordered:false}, function(err, docs){
+           cb(err, docs);
+            
+          });
+        // Headline.create(articles);
       });
    },
    delete: function (query, cb) {
@@ -37,4 +40,4 @@ module.exports = {
          $set: query
       }, {}, cb);
    }
-}
+};

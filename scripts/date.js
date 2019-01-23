@@ -1,6 +1,6 @@
 var makeDate = function () {
    var d = new Date();
-   var fpr,attedDate = "";
+   var formattedDate = "";
 
    formattedDate += (d.getMonth() + 1) + "_";
 
@@ -9,6 +9,7 @@ var makeDate = function () {
    formattedDate += d.getFullYear();
 
    return formattedDate;
+   
 };
 
-module.expoerts = makeDate;
+module.exports = makeDate;

@@ -23,16 +23,25 @@ module.exports = function(router) {
       headlinesController.fetch(function(err, docs) {
          console.log(err, "this is the error");
          console.log(docs, " This is the docs");
-         if (!docs || docs.insertedCount === 0) {
+         var inserted;
+         if (docs !== undefined) {
+            inserted = docs.length
+         } else {
+            inserted = err.nInserted;
+         }
+
+         if (inserted === 0 ) {
             res.json({
                message: "No new articles today. Check back tomorrow!"
             });
          } 
          else {
             res.json({ 
-               message: "Added " + docs.insertedCount + "new articles!"
+               message: "Added " + inserted + "new articles!"
+
             });
          }
+
       });
    });
    router.get("/api/headlines", function(req, res) {
@@ -40,9 +49,9 @@ module.exports = function(router) {
       if (req.query.saved) {
          query = req.query;
       }
-      
-      return headlinesController.get(query, function(data) {
-         return res.json(data);
+      return headlinesController.get(query,function(data) {
+         //res.json(data);
+        return res.json(data);
       });
       
    });

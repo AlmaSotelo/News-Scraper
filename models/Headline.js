@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-
+const uniqueValidator = require("mongoose-unique-validator");
 var Schema = mongoose.Schema;
 
 var headlineSchema = new Schema({
@@ -7,8 +7,9 @@ var headlineSchema = new Schema({
       type: String,
       required: true,
       unique: true
+     
    },
-   sumary: {
+   summary: {
       type: String,
       required:true
    },
@@ -20,5 +21,5 @@ var headlineSchema = new Schema({
 });
 
 var Headline =mongoose.model("Headline", headlineSchema);
-
+headlineSchema.plugin(uniqueValidator);
 module.exports = Headline;

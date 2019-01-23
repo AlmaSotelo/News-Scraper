@@ -32,7 +32,6 @@ $(document).ready(function() {
       //We are passed an array of JSON containing all available articles in or database
       var articlePanels = [];
       //We pass each article JSON object to the createPanel function wich returns a bootstrap
-      //panel with our article data inside
       for (var i=0; i< articles.length; i++) {
          articlePanels.push(createPanel(articles[i]));
       }
