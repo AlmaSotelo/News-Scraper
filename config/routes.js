@@ -19,15 +19,12 @@ module.exports = function(router) {
    });
 
    router.get("/api/fetch", function(req, res) {
-      console.log("In scrape")
       headlinesController.fetch(function(err, docs) {
-         console.log(err, "this is the error");
-         console.log(docs, " This is the docs");
          var inserted;
          if (docs !== undefined) {
             inserted = docs.length
          } else {
-            inserted = err.nInserted;
+            inserted = err.result.nInserted;
          }
 
          if (inserted === 0 ) {
@@ -49,9 +46,8 @@ module.exports = function(router) {
       if (req.query.saved) {
          query = req.query;
       }
-      return headlinesController.get(query,function(data) {
-         //res.json(data);
-        return res.json(data);
+      headlinesController.get(query,function(data) {
+         res.json(data);
       });
       
    });
@@ -70,7 +66,7 @@ module.exports = function(router) {
       });
    });
 
-   router.get(".api/notes/:headline_id?", function(req, res) { 
+   router.get("/api/notes/:headline_id?", function(req, res) { 
       var query = {};
       if (req.params.headline_id) {
          query._id = req.params.headline_id;

@@ -14,7 +14,6 @@ module.exports = {
             articles[i].date = makeDate();
             articles[i].saved = false;
          }
-         console.log(articles.length)
          //mongo function
          //Ponere los articles en el database []
           Headline.insertMany(articles, {ordered:false}, function(err, docs){

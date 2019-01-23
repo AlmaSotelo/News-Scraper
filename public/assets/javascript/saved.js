@@ -15,7 +15,7 @@ $(document).ready(function() {
    function initPage () {
       //Empty the article clontainer, run an AJAX request for any saved headlines
       articleContainer.empty();
-      $.get("/?saved=true").then(function(data) {
+      $.get("/api/headlines?saved=true").then(function(data) {
          //if we have headlines, render them to the page
          if (data && data.length) {
             renderArticles(data);
@@ -72,7 +72,7 @@ $(document).ready(function() {
       var emptyAlert =
          $(["<div class='alert alert-warning text-center'>",
          "<h4>Uh Oh. Looks like we don't have any saved articles.</h4>",
-         "<div>",
+         "</div>",
          "<div class='panel panel-default'>",
          "<div class='panel-heading text-center'>",
          "<h3>Would You Like to Browse Available Articles?</h3>",
@@ -123,11 +123,11 @@ $(document).ready(function() {
    function handleArticleDelete() {
       //This function handles deleting articles/headlines
       //We grab the id of the article to delete from the panel element the delete button sits inside
-      var articleToDelete= $(this).parents(".panel").data();
+      var articleToDelete = $(this).parents(".panel").data();
       //Using a dlete method here just to be semantic since we are deleting an article/headline
       $.ajax({
          method:"DELETE",
-         url: "//" + articleToDelete._id
+         url: "/api/headlines" + articleToDelete._id
       }).then(function(data) {
          //if this works out, run iniPage again which will render our list of saved articles
          if (data.ok) {
@@ -182,7 +182,7 @@ $(document).ready(function() {
       //and por it to the "/api/notes" route and send the formatted noteData as well
       if(newNote) {
          noteData= {
-            id:$(this).data("article"._id),
+            _id: $(this).data("article")._id,
             noteText: newNote
          };
          $.post("/api/notes", noteData).then(function() {
@@ -198,7 +198,7 @@ $(document).ready(function() {
       //we stored this data on the delete button when we created it
       var noteToDelete = $(this).data("_id");
       //Perform an DELETE reqyest ti "/api/notes" with the id of the note we're deleting as a parameter
-      $$.ajax({
+      $.ajax({
          url: "/api/notes/" + noteToDelete,
          method: "DELETE"
       }).then(function() {

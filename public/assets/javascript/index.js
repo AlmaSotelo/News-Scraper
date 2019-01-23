@@ -15,12 +15,13 @@ $(document).ready(function() {
       articleContainer.empty();
       $.get("/api/headlines?saved=false")
         .then(function(data) {
+           console.log("++++++++++++" + data + "+++++++++++This is data from index.js")
            // If we have headlines, render them to the page
            if (data && data.length) {
               renderArticles(data);
            }
            else {
-              // Otherwise render a message explaining wehave no articles
+              // Otherwise render a message explaining we have no articles
               renderEmpty();
            }
         });
@@ -44,8 +45,9 @@ $(document).ready(function() {
       //This function takes in a sinfle JSON object for an article/headline
       //It contructs a jQuery element containing all of the formatted HTML for the
       //article panel
-      var panel =
-         $(["div class='panel panel-default'>",
+      var panel = $(
+         [
+            "div class='panel panel-default'>",
             "div class='panel-heading'>", 
             "<h3>",
             article.headline,
@@ -58,7 +60,9 @@ $(document).ready(function() {
             article.summary,
             "</div>",
             "</div>"
-         ].join(""));
+         ].join("")
+      );
+
          //We attach the article's id to the jQuery element
          //We will use this when trying to figure out which article the user wants to save
       panel.data("_id", article._id);
@@ -116,7 +120,7 @@ $(document).ready(function() {
             //if we are able to succesfully scrape the NYTIMES and compare the articles to those
             //already in our collectiom re render the article on the page
             //and let the user know how many unique articles we were able to save
-           // initPage();
+            initPage();
             bootbox.alert("<h3 class='text-center m-top-80'>" + data.message + "</h3>");
             
         });

@@ -19,7 +19,7 @@ var headlineSchema = new Schema({
       default: false
    }
 });
+headlineSchema.plugin(uniqueValidator);
 
 var Headline =mongoose.model("Headline", headlineSchema);
-headlineSchema.plugin(uniqueValidator);
 module.exports = Headline;

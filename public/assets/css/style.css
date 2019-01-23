@@ -5,7 +5,6 @@ html {
 
 body {
    margin-bottom: 80px;
-   background-image:url("../images/sky.jpg");
 }
 
 .footer {
@@ -77,7 +76,7 @@ body {
 }
 
 .panel.panel-default .panel-heading h3 {
-   color:beige;
+   color:white
 }
 
 .panel.panel-default .panel-heading .btn {
@@ -151,3 +150,6 @@ textarea {
    bottom: 10px;
 }
 
+h4>a {
+   color: #2196F3;
+}
