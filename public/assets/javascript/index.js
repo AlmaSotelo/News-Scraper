@@ -42,7 +42,7 @@ $(document).ready(function() {
          
          var article = articles[i];
          articleContainer.append(`
-         <div class='panel panel-default'>
+         <div data-value=${article._id} class='panel panel-default'>
          <div class='panel-heading'> 
          <h3>
          ${article.headline}
@@ -117,7 +117,7 @@ $(document).ready(function() {
       //This function is triggered when the user wants to save an article
       //When we rendered the article initially, we attatched a javascript object containing the headline id
       //to the elementusing the .data method. Here we retrieve that.
-      var articleToSave = $(this).parents(".panel").data();
+      var articleToSave = $(this).parents(".panel").attr('data-value');
       articleToSave.saved = true;
       //Using a patch method to be semantic since this is an update to an existing record in our collection
       $.ajax({
