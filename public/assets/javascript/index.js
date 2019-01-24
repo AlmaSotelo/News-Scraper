@@ -11,6 +11,7 @@ $(document).ready(function() {
    initPage();
 
    function initPage () {
+      console.log("In init page ")
       //Empty the article container, run an AJAX request for any usaved headlines
       articleContainer.empty();
       $.get("/api/headlines?saved=false")
