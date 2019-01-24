@@ -4,7 +4,8 @@
   "description": "A web app that lets users view and leave comments on the latest news on articles scraped from another site using Mongoose and Cheerio.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -14,6 +15,9 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/AlmaSotelo/News-Scraper/issues"
+  },
+  "engines": {
+    "node": "8.12.0"
   },
   "homepage": "https://github.com/AlmaSotelo/News-Scraper#readme",
   "dependencies": {

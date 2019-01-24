@@ -34,7 +34,7 @@ module.exports = function(router) {
          } 
          else {
             res.json({ 
-               message: "Added " + inserted + "new articles!"
+               message: "Added " + inserted + " new articles!"
 
             });
          }

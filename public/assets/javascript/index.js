@@ -15,9 +15,10 @@ $(document).ready(function() {
       articleContainer.empty();
       $.get("/api/headlines?saved=false")
         .then(function(data) {
-           console.log("++++++++++++" + data + "+++++++++++This is data from index.js")
+           console.log( data, "+++++++++++This is data from index.js")
            // If we have headlines, render them to the page
            if (data && data.length) {
+              console.log("In render articles")
               renderArticles(data);
            }
            else {
@@ -33,18 +34,38 @@ $(document).ready(function() {
       var articlePanels = [];
       //We pass each article JSON object to the createPanel function which returns a bootstrap
       //panel with our article data inside
-      for (var i=0; i< articles.length; i++ ) {
-         articlePanels.push(createPanel(articles[i]));
+      console.log("In render articles function")
+      console.log(articles.length, "this is the length")
+      console.log(articles)
+      for (var i=0; i < articles.length; i++ ) {
+         
+         var article = articles[i];
+         articleContainer.append(`
+         <div class='panel panel-default'>
+         <div class='panel-heading'> 
+         <h3>
+         ${article.headline}
+         <a class='btn-success save'>
+         "Save Article"
+         </a>
+         </h3>
+         </div>
+         <div class='panel-body'>
+         ${article.summary}
+         </div>
+         </div>`)
       }
+     
       //Once we have all of the HTML for the articles stored in our articlePanel array,
       //append them to the articlePanels container
-      articleContainer.append(articlePanels);
+      
    }
 
    function createPanel(article) {
       //This function takes in a sinfle JSON object for an article/headline
       //It contructs a jQuery element containing all of the formatted HTML for the
       //article panel
+      console.log("in create panel")
       var panel = $(
          [
             "div class='panel panel-default'>",
